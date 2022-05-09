@@ -1,4 +1,4 @@
-%%% Kayla Bennett, Marium Yousuf 
+%%% Marium Yousuf 
 %%% CSC 577
 %%% Assignment 11
 function hw11C()
@@ -177,36 +177,7 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% k = findk(w, n, p)
-% bestErr = 100000;
-% for idx=1:k
-%     inl = datasample(data, 2);
-%     [~, ~, distParam, n_vec] = homogenousLS(inl);
-%     [data_diff, ~] = setdiff(data, inl, 'rows');
-%     for p=1:size(data_diff, 1)
-%         closePoints = homogenousLSmodel(data_diff, distParam, n_vec, 0.2);
-%         if size(closePoints, 1) > d
-%             % found a good model - compute line fit params for plotting
-%             allPoints = [closePoints; inl];
-%             [currErr, estY] = homogenousLS(allPoints);
-%             if currErr < bestErr
-%                 X_best = allPoints(:, 1);
-%                 bestFit = estY;
-%                 bestErr = currErr;
-%             end
-%         else
-%             k = k + 1;
-%         end
-%     end
-% end
-% X_8 = [slide_matches, ones(size(slide_matches, 1), 1)];
-% Xp_8 = [frame_matches, ones(size(frame_matches, 1), 1)];
-% pred = H*X_8';
-% pred = pred';
-% pred = pred ./ pred(:, 3);
-% % rms(Xp_8 - pred, 'all') % 0.1750
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [bestFit, bestErr] = SIFTRANSAC(data, n, k, t, N)
     % takes data as the pixel map made from SIFT files
     bestErr = Inf;

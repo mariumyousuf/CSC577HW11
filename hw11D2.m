@@ -8,99 +8,155 @@ close all
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PART D2 - SIFT, Homography, and RANSAC
 % IMAGE 1
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-image_11 = imread("r2d2_1.jpg");
-image_11 = image_11(1:end-1, :, :);
-image_12 = imread("r2d2_2.jpg");
 
-sift_11 = table2array(readtable("r2d2_1.sift", FileType="delimitedtext"));
-sift_12 = table2array(readtable("r2d2_2.sift", FileType="delimitedtext"));
-sift11 = sift_11(1:30:size(sift_11, 1), :);
-sift12 = sift_12(1:30:size(sift_12, 1), :);
-pixel_map = slideMatchesToFrames(sift11, sift12);
-samples = pixel_map(1:15:size(pixel_map), :);
-
-n = 4; % number of data points for the model (need 4 for homography)
-w = 0.6; % inlier ratio
-p = 0.99; % success probability
-k = findk(w, n, p); % number of iterations
-angleColNum = 10; % column number for Euclidean Distance between the matches
-distColNum = 9; % column number for the angle between the match vectors
-
-t = mean(pixel_map(:, distColNum));
-N = 150;
-[bestFit, bestErr] = SIFTRANSAC(pixel_map, n, k, t, N, distColNum);
-bestHomography = bestFit;
-homogSlidePoints = [samples(:, 5:6), ones(size(samples, 1), 1)];
-estimateFramePoints = (bestHomography*homogSlidePoints')';
-estimateFramePoints = estimateFramePoints ./ estimateFramePoints(:, 3);
-size(estimateFramePoints)
-disp(bestErr)
-
-% stackedImgs = cat(2, image_11, image_12);
-% topImgLen = size(image_11, 2);
-% estimateFramePoints(:, 1) = estimateFramePoints(:,1) + topImgLen;
-% for i=1:size(homogSlidePoints, 1)
-%     stackedImgs = draw_segment(stackedImgs, homogSlidePoints(i, 2:-1:1), estimateFramePoints(i, 2:-1:1), 0, 0, 255, 255);
+% stackedImgs = cat(2, im1, im2);
+% leftImgLen = size(im1, 2);
+% Xp(:, 1) = Xp(:, 1) + leftImgLen;
+% row_slide = cast(Xp(:, 2), 'uint32');
+% col_slide = cast(Xp(:, 1), 'uint32');
+% row_frame = cast(X(:, 2), 'uint32');
+% col_frame = cast(X(:, 1), 'uint32');
+% for i=1:size(X, 1)
+%     stackedImgs = draw_segment(stackedImgs, X(i, 2:-1:1), Xp(i, 2:-1:1), 1, 0, 255, 255);
 % end
 % imshow(stackedImgs)
+% hold on
+% plot(col_slide, row_slide, 'rx', 'MarkerSize', 10, 'LineWidth', 2);
+% hold on
+% plot(col_frame, row_frame, 'rx', 'MarkerSize', 10, 'LineWidth', 2);
+% hold off
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+im1 = imread("lion_1.jpg");
+im2 = imread("lion_2.jpg");
+% im1_sift = table2array(readtable("lion_1.sift", FileType="delimitedtext"));
+% im2_sift = table2array(readtable("lion_2.sift", FileType="delimitedtext"));
+% pixelmap = slideMatchesToFrames(im1_sift, im2_sift);
+% save('map_lion.mat','pixelmap');
+S = load('map_lion.mat'); 
+pixelmap = S.pixelmap;
 
-% image_11 = rescale(image_11);
-% image_12 = rescale(image_12);
-% height_1 = size(image_11, 1);
-% width_1 = size(image_11, 1);
-% corners = [[0, 0, 1]; [width_1, 0, 1]; [width_1, height_1, 1]; [0, height_1, 1]]
-% corners_new = [];
-% for i=1:size(corners, 1)
-%     corners_new = [corners_new, bestFit*corners(i, :)'];
+frac = 0.1; % percentage of matches used for samples
+matches_sorted = sortrows(pixelmap, 9);
+size(matches_sorted)
+[~, uidx] = unique(matches_sorted(:, 9), 'stable');
+matches_sorted = matches_sorted(uidx, :);
+% size(matches_sorted)
+% nmatches = size(matches_sorted, 1);
+% fracMatches = ceil(frac*nmatches);
+% samples = matches_sorted(1:20, :);
+% % save('sorted_lion.mat', 'matches_sorted');
+% S = load('sorted_lion.mat'); 
+% matches_sorted = S.matches_sorted;
+% % save('sample_lion.mat', 'samples');
+% S = load('sample_lion.mat'); 
+% samples = S.samples;
+
+% HERE ONWARDS WE USE RANSAC AND HOMOGRAPHY TO FIND BEST MATCHES
+n = 4; % number of data points for the model (need 4 for homography; note n=2 to fit a line)
+w = 0.4; % inlier ratio
+p = 0.99; % success probability
+k = findk(w, n, p); % number of iterations
+
+t = 50;
+N = 150;
+% Homography L -> R
+[bestFit1, ~] = SIFTRANSAC(matches_sorted, n, k, t, N, 'LtoR');
+LtoRHomog = bestFit1;
+% L = [samples(:, 1:2), ones(size(samples, 1), 1)];
+% R = [samples(:, 5:6), ones(size(samples, 1), 1)];
+% R_est = LtoRHomog*L';
+% R_est = R_est';
+% R_est = R_est ./ R_est(:, 3);
+
+% stacked image for SIFT features vis goes here for L to R
+
+% Homography R -> L
+[bestFit2, ~] = SIFTRANSAC(matches_sorted, n, k, t, N, 'RtoL');
+RtoLHomog = bestFit2;
+% R = [samples(:, 5:6), ones(size(samples, 1), 1)];
+% L = [samples(:, 1:2), ones(size(samples, 1), 1)];
+% L_est = RtoLHomog*R';
+% L_est = L_est';
+% L_est = L_est ./ L_est(:, 3);
+% rms(L - L_est, 'all');
+
+
+% stitchedIm = zeros(size(im2, 1), size(im1, 2), 3);
+stitchedIm = 255 * ones(size(im1, 1), size(im1, 2), 3, 'uint8');
+stitchedIm(1:size(im1, 1), 1:size(im1, 2), :) = im1;
+% stitchedIm(end-size(im1, 1)+1:end, 1:size(im1, 2), :) = im1;
+imshow(stitchedIm);
+% 
+% size(im1)
+% for r=1:size(im1, 1)
+%     for c=1:size(im1, 2)
+%         mappedPix = LtoRHomog*[c, r, 1]';
+%         mappedPix = mappedPix';
+%         mappedPix = mappedPix ./ mappedPix(:, 3);
+%         mappedPix = round(mappedPix);
+%         if mappedPix(:, 1) <= 0
+%             continue
+% %             mappedPix(:, 1) = 0;
+% %             mappedPix(:, 1) = mappedPix(:, 1) + 1;
+%         end
+%         if mappedPix(:, 2) <= 0
+%             continue
+% %             mappedPix(:, 2) = 0;
+% %             mappedPix(:, 2) = mappedPix(:, 2) + 1;
+%         end
+%         if mappedPix(:, 1) >= size(stitchedIm, 1)
+%             continue
+% %             mappedPix(:, 1) = size(stitchedIm, 1);
+%         end
+%         if mappedPix(:, 2) >= size(stitchedIm, 2)
+%             continue
+% %             mappedPix(:, 2) = size(stitchedIm, 2);
+%         end
+%         stitchedIm(mappedPix(:, 2), mappedPix(:, 1), :) = im1(r, c, :);
+% %         stitchedIm(mappedPix(:, 1), mappedPix(:, 2), :) = stitchedIm(mappedPix(:, 2), mappedPix(:, 1), :);
+% %         stitchedIm(mappedPix(:, 2), mappedPix(:, 1), :) = 255 * ones(1, 1, 3, 'uint8');
+%     end
 % end
-% corners_new% = corners_new'
-% x_news = corners_new(1, :) / corners_new(3, :);
-% y_news = corners_new(2, :) / corners_new(3, :);
-% y_min = min(y_news)
-% x_min = min(x_news)
+% % imshow(stitchedIm)
 % 
-% panoramaView = imref2d([height width], xLimits, yLimits);
-% translation_mat = [[1, 0, -x_min]; [0, 1, -y_min]; [0, 0, 1]];
-% H = translation_mat*bestFit
-
-image_11 = rescale(image_11);
-image_12 = rescale(image_12);
-warpedImage = imwarp(image_11, projective2d(bestFit), );
-imshow(warpedImage)
-% , panoramaView);
-%
-% x_max = max(x_news)
-% y_max = max(y_news)
-% 
-% width  = round(x_max - x_min)
-% height = round(y_max - y_min)
-% xLimits = [x_min x_max];
-% yLimits = [y_min y_max];
-% panoramaView = imref2d([height width], xLimits, yLimits);
-% im_out = imwarp(image_11, projective2d(H'), 'nearest');
-% imshow(im_out)
-% 
-% numImages = 2;
-% imageSize = zeros(numImages,2);
-% 
-% for i = 1:numel(H)           
-%     [xlim(i,:), ylim(i,:)] = outputLimits(H(i), [1 imageSize(i,2)], [1 imageSize(i,1)]);
-% end
-% xlim
-% ylim
-
-
+size(im2)
+for r=1:size(im2, 1)
+    for c=1:size(im2, 2)
+        mappedPix = RtoLHomog*[r, c, 1]';
+        mappedPix = mappedPix';
+        mappedPix = mappedPix ./ mappedPix(:, 3);
+        mappedPix = round(mappedPix);
+        if mappedPix(:, 1) <= 0
+%             continue
+            mappedPix(:, 1) = 0;
+            mappedPix(:, 1) = mappedPix(:, 1) + 1;
+        end
+        if mappedPix(:, 2) <= 0
+%             continue
+            mappedPix(:, 2) = 0;
+            mappedPix(:, 2) = mappedPix(:, 2) + 1;
+        end
+        if mappedPix(:, 1) >= size(stitchedIm, 1)
+%             continue
+            mappedPix(:, 1) = size(stitchedIm, 1);
+        end
+        if mappedPix(:, 2) >= size(stitchedIm, 2)
+%             continue
+            mappedPix(:, 2) = size(stitchedIm, 2);
+        end
+        stitchedIm(mappedPix(:, 1), mappedPix(:, 2), :) = im2(r, c, :);
+%         stitchedIm(mappedPix(:, 1), mappedPix(:, 2), :) = stitchedIm(mappedPix(:, 2), mappedPix(:, 1), :);
+%         stitchedIm(mappedPix(:, 2), mappedPix(:, 1), :) = 255 * ones(1, 1, 3, 'uint8');
+    end
+end
+imshow(stitchedIm)
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % MAIN FUNCTION ENDED; OTHER FUNCTIONS START BELOW %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-function [bestFit, bestErr] = SIFTRANSAC(data, n, k, t, N, methodCol)
+function [bestFit, bestErr] = SIFTRANSAC(data, n, k, t, N, dir)
     % takes data as the pixel map made from SIFT files
     bestErr = Inf;
     for itr=1:k
@@ -111,23 +167,40 @@ function [bestFit, bestErr] = SIFTRANSAC(data, n, k, t, N, methodCol)
             maybeInliers = [maybeInliers; data(row, :)];
         end
         % maybeModel
-        model = DLT(round(maybeInliers(:,1:2)), round(maybeInliers(:,5:6)), n);
+        if dir == 'LtoR'
+            model = DLT(round(maybeInliers(:, 1:2)), round(maybeInliers(:, 5:6)), n);
+        else 
+            model = DLT(round(maybeInliers(:, 5:6)), round(maybeInliers(:, 1:2)), n);
+        end
         alsoInliers = [];
         [data_diff, ~] = setdiff(data, maybeInliers, 'rows');
         for p=1:size(data_diff, 1)
-            measure = data_diff(p, methodCol);
+            frame = [data_diff(p, 1:2), 1];
+            slide = [data_diff(p, 5:6), 1];
+            slide_est = (model*frame')';
+            slide_est = slide_est ./ slide_est(:, 3);
+            measure = rms(slide - slide_est, 'all');
             if measure < t
-                alsoInliers = [alsoInliers; data(p, :)];
+                alsoInliers = [alsoInliers; data_diff(p, :)];
             end
-            if size(alsoInliers, 1) > N
-                % found a good model
-                allInliers = [maybeInliers; alsoInliers];
+        end
+        if size(alsoInliers, 1) > N
+            % found a good model
+            allInliers = [maybeInliers; alsoInliers];
+            if dir == 'LtoR'
                 betterModel = DLT(round(allInliers(:, 1:2)), round(allInliers(:, 5:6)), size(allInliers, 1));
-                currErr = rms(round(allInliers(:, 1:2)) - round(allInliers(:, 5:6)), 'all');
-                if currErr < bestErr
-                    bestFit = betterModel;
-                    bestErr = currErr;
-                end
+            else 
+                betterModel = DLT(round(allInliers(:, 5:6)), round(allInliers(:, 1:2)), size(allInliers, 1));
+            end
+            frame = [allInliers(:, 1:2), ones(size(allInliers, 1), 1)];
+            slide = [allInliers(:, 5:6), ones(size(allInliers, 1), 1)];
+            slide_est = (betterModel*frame')';
+            slide_est = slide_est ./ slide_est(:, 3);
+            currErr = rms(slide - slide_est, 'all');
+%             currErr = abs(rms(round(allInliers(:, 1:2)), "all") - rms(round(data(:, 1:2)), 'all'));
+            if currErr < bestErr
+                bestFit = betterModel;
+                bestErr = currErr;
             end
         end
     end
@@ -229,12 +302,15 @@ end
 
 end
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [err, Xp_est] = sample_matches(X_init, Xp_init, baseH)
     Xp_est = (baseH*X_init')'
     err = rms(Xp_init - Xp_est, "all");
 end
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function new_Xp = frame_corresp(frame, s_coords, H, num_matches, thresh)
     Xp = (H*s_coords')'
     rows_f = [];
@@ -324,13 +400,13 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function[pixel_map] = slideMatchesToFrames(f1_sifted, s1_sifted)
-%Find best slide keypoint for every frame keypoint
-%using nearest neighbor computed from euclid. distance
-
-    length_f1 = size(f1_sifted);
-    length_f1 = length_f1(1);
-    length_s1 = size(s1_sifted);
-    length_s1 = length_s1(1);
+    %Find best slide keypoint for every frame keypoint
+    %using nearest neighbor computed from euclid. distance
+    length_f1 = size(f1_sifted, 1);
+    length_s1 = size(s1_sifted, 1);
+%     cap = min(length_f1, length_f1)
+%     f1_sifted = f1_sifted(1:cap, :);
+%     s1_sifted = s1_sifted(1:cap, :);
     
     f1_mapping = [];
     f1_scores = []; %some different ways to measure distances
@@ -341,7 +417,7 @@ function[pixel_map] = slideMatchesToFrames(f1_sifted, s1_sifted)
         current = f1_sifted(i,5:132);
         curr_best = s1_sifted(1,5:132);
         for j = 1:length_s1 %checking every slide vector
-            if fvec_distance(current,s1_sifted(j,5:132)) < fvec_distance(current, curr_best);
+            if fvec_distance(current, s1_sifted(j,5:132)) < fvec_distance(current, curr_best)
                 best_index = j;
                 curr_best = s1_sifted(j, 5:132);
             end
@@ -349,13 +425,12 @@ function[pixel_map] = slideMatchesToFrames(f1_sifted, s1_sifted)
         f1_scores(i) = fvec_distance(current, curr_best);
         f1_mapping(i) = best_index;
         f1_angles(i) = vangle(current, curr_best);
-        chi_squared(i) = chiSquared(current, curr_best);
+        chi_squared(i) = chiSquared((current-curr_best), sum(current-curr_best, "all"));
     end
 
     % After generating the mapping, make an array that maps by pixels
     pixel_map = [];
-  
-    
+
     for i = 1:length_f1
         pixel_map(i,1:4) = f1_sifted(i,1:4);
         pixel_map(i,5:8) = s1_sifted(f1_mapping(i), 1:4);
@@ -364,7 +439,7 @@ function[pixel_map] = slideMatchesToFrames(f1_sifted, s1_sifted)
         pixel_map(i,11) = chi_squared(i);
     end
     
-    pixel_map(:,1:2) = round(pixel_map(:,1:2));
+    pixel_map(:, 1:2) = round(pixel_map(:, 1:2));
     pixel_map(:, 5:6) = round(pixel_map(:, 5:6));
 
     return 
@@ -376,7 +451,7 @@ end
 %Get euclidean distance between 2 sift feature vectors
 function[eudist] = fvec_distance(fv1, fv2)
     fv3 = fv2-fv1;
-    eudist = sqrt( sum(fv3.^2) );
+    eudist = norm(fv3);
     return
 end
 
@@ -391,14 +466,26 @@ end
 
 %Return the chi squared value bewtween two feature vectors
 %Treating them as a pair of histograms
-function[csq] = chiSquared(h1,h2)
-    nums = (h1-h2).^2;
-    dens = h1 + h2;
-    arr = nums./dens;
-    s = sum(arr);
-    csq = 0.5*s;
-    return 
+% function[csq] = chiSquared(h1,h2)
+%     nums = (h1-h2).^2;
+%     dens = h1 + h2;
+%     arr = nums./dens;
+%     s = sum(arr);
+%     csq = 0.5*s;
+%     return 
+% end
+function res = chiSquared(array, expectedCount)
+    top = 0;
+    bottom = 0;
+    for i=1:length(array)
+        if array(i) ~= 0
+            top = top + (expectedCount - array(i))^2;
+            bottom = bottom + expectedCount;
+        end
+    end
+    res = top/bottom;
 end
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

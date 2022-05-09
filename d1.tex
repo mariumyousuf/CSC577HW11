@@ -80,19 +80,19 @@ Let ${\mathbf F_i}$ be the row vectors of the matrix $F$ for $i = \{1, 2, 3\}$.
 \begin{bmatrix}
 \begin{bmatrix}
 x' & y' & 1 \\
-\end{bmatrix} \cdot {\mathbf F_1} 
+\end{bmatrix} \cdot {\mathbf F_1}^T
 
 &
 
 \begin{bmatrix}
 x' & y' & 1 \\
-\end{bmatrix} \cdot {\mathbf F_2}
+\end{bmatrix} \cdot {\mathbf F_2}^T
 
 & 
 
 \begin{bmatrix}
 x' & y' & 1 \\
-\end{bmatrix} \cdot {\mathbf F_3}  
+\end{bmatrix} \cdot {\mathbf F_3}^T
 
 \end{bmatrix}
 \begin{bmatrix}
@@ -129,18 +129,18 @@ which we can solve using homogenous least squares method for any number of point
 Using the derivation in Part 5.2, we find $F$ using the 12 (training) coordinates collected in Part 5.1. We tested the computed $F$ on the other $8$ coordinates and yielded an RMS of $0.0249$. 
 
 \subsection{}
-Implement the capability to do the following given image-pairs, point-pairs, and the derived F. For each point in one of the images, draw the epipolar line for it in the other image. Be sure to also include your marked points in such a way that they are not obscured by any of the lines. Hand in the result using an F derived from all your points . Is there any obvious structure in the lines? Explain what is going on .
+Using the given image-pairs and the clicked point-pairs, for this part we used the derived $F$ to draw the epipolar line on both images for each point in the other image. Fig.~\ref{fig:mirrors} shows these lines together with the marked points. On observation, it looks like that the epipolar lines help determine the position of the camera for both scenes! (This question was a lot of fun to tackle.)
 
 \begin{figure}[ht]
 \centering
 	\begin{subfigure}{0.5\textwidth}
     {\includegraphics[width=3in]{new_figs/ep1-d1.jpg}}
-	\caption{20 keypoints for scene 1}
+	\caption{Epipolar lines on scene 1 using points from scene 2}
 	\end{subfigure}
 	\begin{subfigure}{0.5\textwidth}
     {\includegraphics[width=3in]{new_figs/ep2-d1.jpg}
-	\caption{20 keypoints for scene 2}
+	\caption{Epipolar lines on scene 2 using points from scene 1}
 	\end{subfigure}
-	\caption{Figure showing matches across two arbitrary views of the same scene. The image points were chosen carefully such that the points occur in both scence.}
+	\caption{Figure showing epipolar lines on both scences. These were determined by first collecting 20 points by mouse-clicking and then distribution the points into training (of 12 points) and test (of 8 points) sets. Using the training points, we determined the fundamental matrix $F$ using the derivation in 5.2 and used the 8 test points to see how close they are to 0, since $(x')^T F x = 0$ everytime.}
 \label{fig:mirrors}
 \end{figure}

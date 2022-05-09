@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.9.23)  8 MAY 2022 19:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.9.23)  9 MAY 2022 03:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -541,7 +541,7 @@ LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 3
  (/usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-<figs/ransac_fit.jpg, id=46, 1124.2pt x 843.15pt>
+<figs/ransac_fit.jpg, id=50, 1124.2pt x 843.15pt>
 File: figs/ransac_fit.jpg Graphic file (type jpg)
 <use figs/ransac_fit.jpg>
 Package pdftex.def Info: figs/ransac_fit.jpg  used on input line 10.
@@ -553,32 +553,32 @@ Package pdftex.def Info: figs/ransac_fit.jpg  used on input line 10.
 [2 <./figs/ransac_fit.jpg>] (./b.tex [3
 
 ]
-<figs/vizSlidePts_1.jpg, id=74, 1084.05pt x 740.7675pt>
+<figs/vizSlidePts_1.jpg, id=78, 1084.05pt x 740.7675pt>
 File: figs/vizSlidePts_1.jpg Graphic file (type jpg)
 <use figs/vizSlidePts_1.jpg>
 Package pdftex.def Info: figs/vizSlidePts_1.jpg  used on input line 26.
 (pdftex.def)             Requested size: 216.81pt x 148.15086pt.
-<figs/vizFramePts_1.jpg, id=75, 1065.9825pt x 782.925pt>
+<figs/vizFramePts_1.jpg, id=79, 1065.9825pt x 782.925pt>
 File: figs/vizFramePts_1.jpg Graphic file (type jpg)
 <use figs/vizFramePts_1.jpg>
 Package pdftex.def Info: figs/vizFramePts_1.jpg  used on input line 30.
 (pdftex.def)             Requested size: 216.81pt x 159.23433pt.
-<figs/vizSlidePts_2.jpg, id=76, 570.13pt x 395.4775pt>
+<figs/vizSlidePts_2.jpg, id=80, 570.13pt x 395.4775pt>
 File: figs/vizSlidePts_2.jpg Graphic file (type jpg)
 <use figs/vizSlidePts_2.jpg>
 Package pdftex.def Info: figs/vizSlidePts_2.jpg  used on input line 34.
 (pdftex.def)             Requested size: 216.81pt x 150.39163pt.
-<figs/vizFramePts_2.jpg, id=77, 570.13pt x 371.3875pt>
+<figs/vizFramePts_2.jpg, id=81, 570.13pt x 371.3875pt>
 File: figs/vizFramePts_2.jpg Graphic file (type jpg)
 <use figs/vizFramePts_2.jpg>
 Package pdftex.def Info: figs/vizFramePts_2.jpg  used on input line 38.
 (pdftex.def)             Requested size: 216.81pt x 141.23071pt.
-<figs/vizSlidePts_3.jpg, id=78, 570.13pt x 395.4775pt>
+<figs/vizSlidePts_3.jpg, id=82, 570.13pt x 395.4775pt>
 File: figs/vizSlidePts_3.jpg Graphic file (type jpg)
 <use figs/vizSlidePts_3.jpg>
 Package pdftex.def Info: figs/vizSlidePts_3.jpg  used on input line 42.
 (pdftex.def)             Requested size: 216.81pt x 150.39163pt.
-<figs/vizFramePts_3.jpg, id=79, 570.13pt x 371.3875pt>
+<figs/vizFramePts_3.jpg, id=83, 570.13pt x 371.3875pt>
 File: figs/vizFramePts_3.jpg Graphic file (type jpg)
 <use figs/vizFramePts_3.jpg>
 Package pdftex.def Info: figs/vizFramePts_3.jpg  used on input line 46.
@@ -601,7 +601,7 @@ Overfull \hbox (1.90001pt too wide) in paragraph at lines 25--49
 [4 <./figs/vizSlidePts_1.jpg> <./figs/vizFramePts_1.jpg> <./figs/vizSlidePts_2.
 jpg> <./figs/vizFramePts_2.jpg> <./figs/vizSlidePts_3.jpg> <./figs/vizFramePts_
 3.jpg>]
-<new_figs/fBSF1.jpg, id=84, 578.16pt x 371.3875pt>
+<new_figs/fBSF1.jpg, id=88, 578.16pt x 371.3875pt>
 File: new_figs/fBSF1.jpg Graphic file (type jpg)
 <use new_figs/fBSF1.jpg>
 Package pdftex.def Info: new_figs/fBSF1.jpg  used on input line 56.
@@ -611,7 +611,7 @@ Overfull \hbox (28.91086pt too wide) in paragraph at lines 56--57
 [][] 
  []
 
-<new_figs/fBSF2.jpg, id=85, 1134.2375pt x 959.585pt>
+<new_figs/fBSF2.jpg, id=89, 1134.2375pt x 959.585pt>
 File: new_figs/fBSF2.jpg Graphic file (type jpg)
 <use new_figs/fBSF2.jpg>
 Package pdftex.def Info: new_figs/fBSF2.jpg  used on input line 60.
@@ -621,7 +621,7 @@ Overfull \hbox (28.91086pt too wide) in paragraph at lines 60--61
 [][] 
  []
 
-<new_figs/fBSF3.jpg, id=86, 570.13pt x 371.3875pt>
+<new_figs/fBSF3.jpg, id=90, 570.13pt x 371.3875pt>
 File: new_figs/fBSF3.jpg Graphic file (type jpg)
 <use new_figs/fBSF3.jpg>
 Package pdftex.def Info: new_figs/fBSF3.jpg  used on input line 64.
@@ -641,7 +641,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 55--67
 
  <./new_figs/fBSF1.jpg> <./new_figs/fBSF2.jpg> <./new_figs/fBSF3.jpg>]
 (./c.tex
-<new_figs/fCSF1x.jpg, id=92, 578.16pt x 642.4pt>
+<new_figs/fCSF1x.jpg, id=96, 578.16pt x 642.4pt>
 File: new_figs/fCSF1x.jpg Graphic file (type jpg)
 <use new_figs/fCSF1x.jpg>
 Package pdftex.def Info: new_figs/fCSF1x.jpg  used on input line 17.
@@ -651,7 +651,7 @@ Overfull \hbox (28.91086pt too wide) in paragraph at lines 17--18
 [][] 
  []
 
-<new_figs/fCSF2x.jpg, id=93, 578.16pt x 642.4pt>
+<new_figs/fCSF2x.jpg, id=97, 578.16pt x 642.4pt>
 File: new_figs/fCSF2x.jpg Graphic file (type jpg)
 <use new_figs/fCSF2x.jpg>
 Package pdftex.def Info: new_figs/fCSF2x.jpg  used on input line 21.
@@ -661,7 +661,7 @@ Overfull \hbox (28.91086pt too wide) in paragraph at lines 21--22
 [][] 
  []
 
-<new_figs/fCSF3x.jpg, id=94, 570.13pt x 636.3775pt>
+<new_figs/fCSF3x.jpg, id=98, 570.13pt x 636.3775pt>
 File: new_figs/fCSF3x.jpg Graphic file (type jpg)
 <use new_figs/fCSF3x.jpg>
 Package pdftex.def Info: new_figs/fCSF3x.jpg  used on input line 25.
@@ -680,12 +680,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 16--28
 
 ] [7 <./new_figs/fCSF1x.jpg> <./new_figs/fCSF2x.jpg> <./new_figs/fCSF3x.jpg>] (
 ./d1.tex
-<new_figs/fm1_kp.jpg, id=106, 1228.59pt x 889.3225pt>
+<new_figs/fm1_kp.jpg, id=110, 1228.59pt x 889.3225pt>
 File: new_figs/fm1_kp.jpg Graphic file (type jpg)
 <use new_figs/fm1_kp.jpg>
 Package pdftex.def Info: new_figs/fm1_kp.jpg  used on input line 8.
 (pdftex.def)             Requested size: 216.81pt x 156.93648pt.
-<new_figs/fm2_kp.jpg, id=107, 1228.59pt x 889.3225pt>
+<new_figs/fm2_kp.jpg, id=111, 1228.59pt x 889.3225pt>
 File: new_figs/fm2_kp.jpg Graphic file (type jpg)
 <use new_figs/fm2_kp.jpg>
 Package pdftex.def Info: new_figs/fm2_kp.jpg  used on input line 12.
@@ -700,45 +700,119 @@ l.14 	\end{subfigure}
 [8
 
  <./new_figs/fm1_kp.jpg> <./new_figs/fm2_kp.jpg>]
-<new_figs/ep1-d1.jpg, id=113, 1228.59pt x 889.3225pt>
+<new_figs/ep1-d1.jpg, id=118, 1228.59pt x 889.3225pt>
 File: new_figs/ep1-d1.jpg Graphic file (type jpg)
 <use new_figs/ep1-d1.jpg>
-Package pdftex.def Info: new_figs/ep1-d1.jpg  used on input line 136.
+Package pdftex.def Info: new_figs/ep1-d1.jpg  used on input line 137.
 (pdftex.def)             Requested size: 216.81pt x 156.93648pt.
-<new_figs/ep2-d1.jpg, id=114, 1228.59pt x 889.3225pt>
+<new_figs/ep2-d1.jpg, id=119, 1228.59pt x 889.3225pt>
 File: new_figs/ep2-d1.jpg Graphic file (type jpg)
 <use new_figs/ep2-d1.jpg>
-Package pdftex.def Info: new_figs/ep2-d1.jpg  used on input line 140.
+Package pdftex.def Info: new_figs/ep2-d1.jpg  used on input line 141.
 (pdftex.def)             Requested size: 216.81pt x 156.93648pt.
 
 ! Missing } inserted.
 <inserted text> 
                 }
-l.142 	\end{subfigure}
+l.143 	\end{subfigure}
                       
 ? 
-) (./d2.tex) [9] [10 <./new_figs/ep1-d1.jpg> <./new_figs/ep2-d1.jpg>]
-(./h11.aux)
+) [9] [10 <./new_figs/ep1-d1.jpg> <./new_figs/ep2-d1.jpg>] (./d2.tex
+<new_figs/lion_siftFeats20.jpg, id=130, 1734.48pt x 1142.2675pt>
+File: new_figs/lion_siftFeats20.jpg Graphic file (type jpg)
+<use new_figs/lion_siftFeats20.jpg>
+Package pdftex.def Info: new_figs/lion_siftFeats20.jpg  used on input line 6.
+(pdftex.def)             Requested size: 216.81pt x 142.78308pt.
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+Overfull \hbox (28.91086pt too wide) in paragraph at lines 6--7
+[][] 
+ []
 
+<new_figs/lion_siftFeats108.jpg, id=131, 1734.48pt x 1142.2675pt>
+File: new_figs/lion_siftFeats108.jpg Graphic file (type jpg)
+<use new_figs/lion_siftFeats108.jpg>
+Package pdftex.def Info: new_figs/lion_siftFeats108.jpg  used on input line 10.
 
-Package rerunfilecheck Warning: File `h11.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
+(pdftex.def)             Requested size: 216.81pt x 142.78308pt.
 
-Package rerunfilecheck Info: Checksums for `h11.out':
-(rerunfilecheck)             Before: 8A1D93DAF345A5AC69B08C2891CF4C0B;1126
-(rerunfilecheck)             After:  E311040A6A2DC4483027CF48892A1D47;1176.
+Overfull \hbox (28.91086pt too wide) in paragraph at lines 10--11
+[][] 
+ []
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.12 	\end{subfigure}
+                     
+? 
+<new_figs/1_stitch.jpg, id=134, 975.645pt x 1142.2675pt>
+File: new_figs/1_stitch.jpg Graphic file (type jpg)
+<use new_figs/1_stitch.jpg>
+Package pdftex.def Info: new_figs/1_stitch.jpg  used on input line 22.
+(pdftex.def)             Requested size: 180.67499pt x 211.52533pt.
+<new_figs/2_stitch.jpg, id=135, 975.645pt x 1142.2675pt>
+File: new_figs/2_stitch.jpg Graphic file (type jpg)
+<use new_figs/2_stitch.jpg>
+Package pdftex.def Info: new_figs/2_stitch.jpg  used on input line 26.
+(pdftex.def)             Requested size: 180.67499pt x 211.52533pt.
+! Missing } inserted.
+<inserted text> 
+                }
+l.28 	\end{subfigure}
+                     
+? 
+<new_figs/3_stitch.jpg, id=136, 1228.59pt x 1142.2675pt>
+File: new_figs/3_stitch.jpg Graphic file (type jpg)
+<use new_figs/3_stitch.jpg>
+Package pdftex.def Info: new_figs/3_stitch.jpg  used on input line 30.
+(pdftex.def)             Requested size: 180.67499pt x 167.96883pt.
+<new_figs/4_stitch.jpg, id=137, 1228.59pt x 1142.2675pt>
+File: new_figs/4_stitch.jpg Graphic file (type jpg)
+<use new_figs/4_stitch.jpg>
+Package pdftex.def Info: new_figs/4_stitch.jpg  used on input line 34.
+(pdftex.def)             Requested size: 180.67499pt x 167.96883pt.
+! Missing } inserted.
+<inserted text> 
+                }
+l.36 	\end{subfigure}
+                     
+? 
+<new_figs/5_stitch.jpg, id=138, 1397.22pt x 1479.5275pt>
+File: new_figs/5_stitch.jpg Graphic file (type jpg)
+<use new_figs/5_stitch.jpg>
+Package pdftex.def Info: new_figs/5_stitch.jpg  used on input line 38.
+(pdftex.def)             Requested size: 180.67499pt x 191.30684pt.
+<new_figs/6_stitch.jpg, id=139, 975.645pt x 1142.2675pt>
+File: new_figs/6_stitch.jpg Graphic file (type jpg)
+<use new_figs/6_stitch.jpg>
+Package pdftex.def Info: new_figs/6_stitch.jpg  used on input line 42.
+(pdftex.def)             Requested size: 180.67499pt x 211.52533pt.
+! Missing } inserted.
+<inserted text> 
+                }
+l.44 	\end{subfigure}
+                     
+? 
+
+LaTeX Warning: Float too large for page by 27.58948pt on input line 47.
+
+) [11
+
+ <./new_figs/lion_siftFeats20.jpg> <./new_figs/lion_siftFeats108.jpg>]
+[12 <./new_figs/1_stitch.jpg> <./new_figs/2_stitch.jpg> <./new_figs/3_stitch.jp
+g> <./new_figs/4_stitch.jpg> <./new_figs/5_stitch.jpg> <./new_figs/6_stitch.jpg
+>] (./h11.aux)
+Package rerunfilecheck Info: File `h11.out' has not changed.
+(rerunfilecheck)             Checksum: E311040A6A2DC4483027CF48892A1D47;1176.
  ) 
 Here is how much of TeX's memory you used:
- 12510 strings out of 478994
- 200435 string characters out of 5858184
- 514486 words of memory out of 5000000
- 29723 multiletter control sequences out of 15000+600000
+ 12565 strings out of 478994
+ 201719 string characters out of 5858184
+ 516230 words of memory out of 5000000
+ 29766 multiletter control sequences out of 15000+600000
  439103 words of font info for 94 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 71i,13n,74p,884b,500s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 71i,13n,74p,1575b,500s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -747,10 +821,10 @@ ve/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texliv
 e/2021/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2021/tex
 mf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2021/texmf-dist/fo
 nts/type1/urw/times/utmri8a.pfb>
-Output written on h11.pdf (10 pages, 1680639 bytes).
+Output written on h11.pdf (12 pages, 5183986 bytes).
 PDF statistics:
- 159 PDF objects out of 1000 (max. 8388607)
- 121 compressed objects within 2 object streams
- 29 named destinations out of 1000 (max. 500000)
- 166 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 185 PDF objects out of 1000 (max. 8388607)
+ 137 compressed objects within 2 object streams
+ 33 named destinations out of 1000 (max. 500000)
+ 214 words of extra memory for PDF output out of 10000 (max. 10000000)
 
