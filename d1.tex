@@ -1,0 +1,146 @@
+\subsection{} 
+
+Fig.~\ref{fig:fmkeypoints} shows the 20 matching image points using mouse-clicking as done in HW3 previously. These coordinates were saved and submitted with the submitted assignment files named {\it FM\_1.txt} and {\it FM\_2.txt}. 
+
+\begin{figure}[ht]
+\centering
+	\begin{subfigure}{0.5\textwidth}
+    {\includegraphics[width=3in]{new_figs/fm1_kp.jpg}}
+	\caption{20 keypoints for scene 1}
+	\end{subfigure}
+	\begin{subfigure}{0.5\textwidth}
+    {\includegraphics[width=3in]{new_figs/fm2_kp.jpg}
+	\caption{20 keypoints for scene 2}
+	\end{subfigure}
+	\caption{Figure showing matches across two arbitrary views of the same scene. The image points were chosen carefully such that the points occur in both scence.}
+\label{fig:fmkeypoints}
+\end{figure}
+
+
+\subsection{} 
+
+Using the fact that $(x')^T F x = 0$ everytime, we can compute the fundamental matrix in the following way. Let:
+\begin{equation*}
+{\mathbf X'} = 
+\begin{bmatrix}
+x' \\
+y' \\
+1
+\end{bmatrix},
+\quad
+{\mathbf X} = 
+\begin{bmatrix}
+x \\
+y \\
+1
+\end{bmatrix},
+\quad
+{\mathbf F} = 
+\begin{bmatrix}
+F_{11} & F_{12} & F_{13}\\
+F_{21} & F_{22} & F_{23}\\
+F_{31} & F_{32} & F_{33}
+\end{bmatrix},
+\end{equation*}
+
+Then we have:
+\begin{equation*}
+\begin{bmatrix}
+x' & y' & 1 \\
+\end{bmatrix} 
+\begin{bmatrix}
+F_{11} & F_{12} & F_{13}\\
+F_{21} & F_{22} & F_{23}\\
+F_{31} & F_{32} & F_{33}
+\end{bmatrix}
+\begin{bmatrix}
+x \\
+y \\
+1
+\end{bmatrix}
+= 0
+\end{equation*}
+
+\begin{equation*}
+\implies
+\begin{bmatrix}
+x'F_{11} + y'F_{21} + F_{31} & x'F_{12} + y'F_{22} + F_{32} & x'F_{13} + y'F_{23} + F_{33}
+\end{bmatrix}
+\begin{bmatrix}
+x \\
+y \\
+1
+\end{bmatrix}
+ = 0
+\end{equation*}
+
+Let ${\mathbf F_i}$ be the row vectors of the matrix $F$ for $i = \{1, 2, 3\}$.
+\begin{equation*}
+\implies
+\begin{bmatrix}
+\begin{bmatrix}
+x' & y' & 1 \\
+\end{bmatrix} \cdot {\mathbf F_1} 
+
+&
+
+\begin{bmatrix}
+x' & y' & 1 \\
+\end{bmatrix} \cdot {\mathbf F_2}
+
+& 
+
+\begin{bmatrix}
+x' & y' & 1 \\
+\end{bmatrix} \cdot {\mathbf F_3}  
+
+\end{bmatrix}
+\begin{bmatrix}
+x \\
+y \\
+1
+\end{bmatrix}
+ = 0
+\end{equation*}
+
+
+Therefore, we have:
+\begin{equation*}
+\begin{bmatrix}
+x'x & y'x & x & x'y & y'y & y & x' & y' & 1 
+\end{bmatrix} 
+\begin{bmatrix}
+F_{11} \\
+F_{12} \\
+F_{13} \\
+F_{21} \\
+F_{22} \\
+F_{23} \\
+F_{31} \\
+F_{32} \\
+F_{33}
+\end{bmatrix}
+= 0,
+\end{equation*}
+
+which we can solve using homogenous least squares method for any number of points ${\mathbf X}$ and corresponding ${\mathbf X'}$. 
+
+\subsection{} 
+Using the derivation in Part 5.2, we find $F$ using the 12 (training) coordinates collected in Part 5.1. We tested the computed $F$ on the other $8$ coordinates and yielded an RMS of $0.0249$. 
+
+\subsection{}
+Implement the capability to do the following given image-pairs, point-pairs, and the derived F. For each point in one of the images, draw the epipolar line for it in the other image. Be sure to also include your marked points in such a way that they are not obscured by any of the lines. Hand in the result using an F derived from all your points . Is there any obvious structure in the lines? Explain what is going on .
+
+\begin{figure}[ht]
+\centering
+	\begin{subfigure}{0.5\textwidth}
+    {\includegraphics[width=3in]{new_figs/ep1-d1.jpg}}
+	\caption{20 keypoints for scene 1}
+	\end{subfigure}
+	\begin{subfigure}{0.5\textwidth}
+    {\includegraphics[width=3in]{new_figs/ep2-d1.jpg}
+	\caption{20 keypoints for scene 2}
+	\end{subfigure}
+	\caption{Figure showing matches across two arbitrary views of the same scene. The image points were chosen carefully such that the points occur in both scence.}
+\label{fig:mirrors}
+\end{figure}

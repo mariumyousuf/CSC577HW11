@@ -1,0 +1,1 @@
+This folder contains images that were turned in with the incomplete submission -- most of them are incorrect
