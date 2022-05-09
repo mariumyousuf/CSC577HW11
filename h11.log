@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.9.23)  9 MAY 2022 03:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.9.23)  9 MAY 2022 03:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -808,7 +808,7 @@ Package rerunfilecheck Info: File `h11.out' has not changed.
 Here is how much of TeX's memory you used:
  12565 strings out of 478994
  201719 string characters out of 5858184
- 516230 words of memory out of 5000000
+ 515230 words of memory out of 5000000
  29766 multiletter control sequences out of 15000+600000
  439103 words of font info for 94 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -821,7 +821,7 @@ ve/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texliv
 e/2021/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2021/tex
 mf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2021/texmf-dist/fo
 nts/type1/urw/times/utmri8a.pfb>
-Output written on h11.pdf (12 pages, 5183986 bytes).
+Output written on h11.pdf (12 pages, 5184088 bytes).
 PDF statistics:
  185 PDF objects out of 1000 (max. 8388607)
  137 compressed objects within 2 object streams
